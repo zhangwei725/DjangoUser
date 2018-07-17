@@ -7,4 +7,6 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('^$', views.index, name='index'),
     url('users/', include('user_auth.urls')),
+    url('captcha/', include('captcha.urls')),
+
 ]

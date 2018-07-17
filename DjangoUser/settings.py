@@ -4,15 +4,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mvep26n9ryxh716)brg4roffm_jg1_nek(hw*-6k+7kkbkmq_x'
 DEBUG = True
 ALLOWED_HOSTS = []
-INSTALLED_APPS = [
+# 系统内置
+SYS_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+# 自定义的app
+CUSTOM_APPS = [
     'user_auth',
 ]
+
+EXT_APPS = [
+    # 验证码
+    'captcha',
+]
+INSTALLED_APPS = SYS_APPS + CUSTOM_APPS + EXT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,3 +95,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # 用户内置用户修改
 AUTH_USER_MODEL = 'user_auth.User'
+
+# 验证码的配置信息
+
+# 配置生成验证码图片的大小
+CAPTCHA_IMAGE_SIZE = (100, 25)
+CAPTCHA_LENGTH = 6 # 字符个数
+# CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

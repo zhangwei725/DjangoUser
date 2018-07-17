@@ -87,13 +87,10 @@
         {#            </div>#}
         {#        </div>#}
         <div class="form-group agileinfo wthree w3-agileits agile">
-            <label for="validate_code">验证码
-                <span> 点击图片刷新验证码</span>
-            </label>
+            <input type="hidden" id="captcha_key" name='captcha_key' value="{{ captcha_key }}">
             <div class="input-group">
-                <img id="captcha"
-                     src=''>
-                <input type="text" class="form-control"
+                <img id="captcha" src='{{ captcha_img_url }}'>
+                <input type="text" class='col-lg-offset-3'
                        id="validate_code" name="validate_code"
                        placeholder="四位字符验证码">
             </div>
@@ -118,5 +115,22 @@
 <script src="/static/js/jquery-1.10.2.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/validator.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $('#captcha').click(function () {
+            $.get('http://127.0.0.1:8000/users/refresh/', function (data) {
+                $('#captcha_key').val(data.captcha_key)
+                $('#captcha').attr('src', data.captcha_img_url)
+            })
+        })
+
+    })
+
+</script>
+
+
 </body>
 </html>
