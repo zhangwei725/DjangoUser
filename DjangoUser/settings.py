@@ -16,6 +16,7 @@ SYS_APPS = [
 # 自定义的app
 CUSTOM_APPS = [
     'user_auth',
+    'redi',
 ]
 
 EXT_APPS = [
@@ -33,6 +34,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# 全局配置 登录跳转的url
+LOGIN_URL = '/users/login/'
 
 ROOT_URLCONF = 'DjangoUser.urls'
 
@@ -100,5 +103,5 @@ AUTH_USER_MODEL = 'user_auth.User'
 
 # 配置生成验证码图片的大小
 CAPTCHA_IMAGE_SIZE = (100, 25)
-CAPTCHA_LENGTH = 6 # 字符个数
+CAPTCHA_LENGTH = 6  # 字符个数
 # CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'

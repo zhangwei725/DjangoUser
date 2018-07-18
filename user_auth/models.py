@@ -10,3 +10,8 @@ class User(AbstractUser):
 
     class Meta(AbstractUser.Meta):
         db_table = 'user'
+
+
+# class UserProfile(models.Model):
+#     phone = models.CharField(max_length=11, unique=True)
+#     User = models.OneToOneField()

@@ -1,6 +1,7 @@
 from captcha.helpers import captcha_image_url
 from captcha.models import CaptchaStore
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from user_auth.models import User
@@ -125,6 +126,8 @@ bool                   Boolean
 
 import json
 
+
+# input
 def refresh_code(request):
     # 生成随机的字符窜
     key = CaptchaStore.generate_key()
@@ -133,3 +136,34 @@ def refresh_code(request):
     #  序列化  就字典生成json数据
     result = json.dumps({'captcha_key': key, 'captcha_img_url': img_url})
     return HttpResponse(result, content_type='application/json')
+
+
+"""
+必须登录之后才能去访问
+如果没登录跳转登录的界面
+"""
+
+
+#
+# def test():
+#     user = User.objects.get(id=1)
+#     user.userprofile.phone
+
+
+# 局部跳转
+@login_required
+def change(request):
+    try:
+        user = User.objects.get(id=1)
+        user.set_password('123456')
+    except User.DoesNotExist:
+        pass
+    return HttpResponse('修改成功')
+
+
+def list(request, page, size):
+    return HttpResponse(page)
+
+
+def list2(request, uid):
+    return HttpResponse(uid)

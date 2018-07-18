@@ -8,4 +8,8 @@ urlpatterns = [
     url(r'logout/', views.logout_view, name='logout'),
     url(r'captcha/', views.captcha, name='captcha'),
     url(r'refresh/', views.refresh_code),
+    url(r'change/', views.change),
+    url(r'list/(\d+)/(\d+)/', views.list, name='list'),
+    url(r'list2/(?P<uid>\d+)', views.list2, name='list2'),
+
 ]
